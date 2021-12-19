@@ -29,13 +29,11 @@ class Stack2 {
     T* data = new T[length];
     T obj(value...);
     if (length) {
-      for (unsigned int i = 0; i < length; ++i)
-        data[i] = forward<T>(ptr[i]);
+      for (unsigned int i = 0; i < length; ++i) data[i] = forward<T>(ptr[i]);
     }
     delete[] ptr;
     ptr = new T[++length];
-    for (unsigned int i = 0; i < length; ++i)
-      ptr[i] = forward<T>(data[i]);
+    for (unsigned int i = 0; i < length; ++i) ptr[i] = forward<T>(data[i]);
     delete[] data;
     ptr[length - 1] = forward<T>(obj);
   }
@@ -43,13 +41,11 @@ class Stack2 {
   void push(T&& value) {
     T* data = new T[length];
     if (length) {
-      for (unsigned int i = 0; i < length; ++i)
-        data[i] = forward<T>(ptr[i]);
+      for (unsigned int i = 0; i < length; ++i) data[i] = forward<T>(ptr[i]);
     }
     delete[] ptr;
     ptr = new T[++length];
-    for (unsigned int i = 0; i < length; ++i)
-      ptr[i] = forward<T>(data[i]);
+    for (unsigned int i = 0; i < length; ++i) ptr[i] = forward<T>(data[i]);
     delete[] data;
     ptr[length - 1] = forward<T>(value);
   }
@@ -64,17 +60,16 @@ class Stack2 {
   T pop() {
     if (length) {
       T* data = new T[length];
-      for (unsigned int i = 0; i < length; ++i)
-        data[i] = forward<T>(ptr[i]);
+      for (unsigned int i = 0; i < length; ++i) data[i] = forward<T>(ptr[i]);
       delete[] ptr;
       ptr = new T[--length];
-      for (unsigned int i = 0; i < length; ++i)
-        ptr[i] = forward<T>(data[i]);
+      for (unsigned int i = 0; i < length; ++i) ptr[i] = forward<T>(data[i]);
       T temp = data[length];
       delete[] data;
       return temp;
-    } else
+    } else {
       throw logic_error("Stack is empty!");
+    }
   }
 };
 

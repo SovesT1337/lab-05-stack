@@ -1,7 +1,7 @@
 // Copyright 2021 SovesT
 
-#ifndef INCLUDE_EXAMPLE_HPP_
-#define INCLUDE_EXAMPLE_HPP_
+#ifndef INCLUDE_STACK_HPP_
+#define INCLUDE_STACK_HPP_
 
 #include <stdexcept>
 
@@ -55,9 +55,7 @@ class Stack {
     }
   }
 
-  
-
   const T& head() const { return top->data; }
 };
 
-#endif  // INCLUDE_EXAMPLE_HPP_
+#endif  // INCLUDE_STACK_HPP_

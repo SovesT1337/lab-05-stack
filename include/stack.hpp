@@ -41,7 +41,7 @@ class Stack {
     newn->data = value;
     newn->next = top;
     top = newn;
-    delete[] newn;
+    delete newn;
     length++;
   }
 

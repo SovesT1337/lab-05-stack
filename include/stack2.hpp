@@ -45,8 +45,7 @@ class Stack2 {
     }
     delete[] ptr;
     ptr = new T[++length];
-    for (unsigned int i = 0; i < length; ++i) 
-        ptr[i] = forward<T>(data[i]);
+    for (unsigned int i = 0; i < length; ++i) ptr[i] = forward<T>(data[i]);
     delete data;
     ptr[length - 1] = forward<T>(value);
   }

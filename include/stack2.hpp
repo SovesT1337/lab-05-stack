@@ -33,21 +33,40 @@ class Stack2 {
     }
     delete[] ptr;
     ptr = new T[++length];
-    for (unsigned int i = 0; i < length; ++i) ptr[i] = forward<T>(data[i]);
+    for (unsigned int i = 0; i < length - 1; ++i) ptr[i] = forward<T>(data[i]);
     delete[] data;
     ptr[length - 1] = forward<T>(obj);
   }
 
   void push(T&& value) {
-    T* data = new T[length];
-    // if (length) {
-      for (unsigned int i = 0; i < length; ++i) data[i] = forward<T>(ptr[i]);
-    // }
-    delete[] ptr;
-    ptr = new T[++length];
-    for (unsigned int i = 0; i < length; ++i) ptr[i] = forward<T>(data[i]);
-    delete[] data;
-    ptr[length - 1] = forward<T>(value);
+        T* data = new T[length];
+        if (length) {
+          for (unsigned int i = 0; i < length; ++i) data[i] = forward<T>(ptr[i]);
+        }
+        delete[] ptr;
+        ++length;
+        ptr = new T[length];
+        for (unsigned int i = 0; i < length - 1; ++i) ptr[i] = forward<T>(data[i]);
+        delete[] data;
+        ptr[length - 1] = forward<T>(value);
+
+//    if (length > 0) {
+//      T* data = new T[length];
+//      for (unsigned int i = 0; i < length; ++i)
+//        data[i] = forward<T>(ptr[i]);
+//      delete[] ptr;
+//      ++length;
+//      ptr = new T[length];
+//      for (unsigned int i = 0; i < length; ++i)
+//        ptr[i] = forward<T>(data[i]);
+//      delete[] data;
+//      ptr[length - 1] = forward<T>(value);
+//    } if (length == 0) {
+//      delete[] ptr;
+//      ++length;
+//      ptr = new T[length];
+//      ptr[length - 1] = forward<T>(value);
+//    }
   }
 
   const T& head() const {
